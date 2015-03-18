@@ -82,7 +82,7 @@ function Enemy2(x, vx) {
     this.padding.bottom = 80;
     this.padding.top = 0;
 
-    this.hp = 4;
+    this.hp = 3;
 
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
