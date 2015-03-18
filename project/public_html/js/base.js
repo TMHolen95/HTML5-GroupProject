@@ -318,6 +318,7 @@ function MainGame(canvasId) {
             _enemySpawner.update(time);
 
 
+        ctx.fillText("Score: " + _score, 10, 20);
     };
 
 
