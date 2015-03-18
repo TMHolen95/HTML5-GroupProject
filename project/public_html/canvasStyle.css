@@ -11,6 +11,7 @@ and open the template in the editor.
 #gameWorld, #gameSplash, #gameOver{
     border: 1px solid #000000;
     background-image: url(img/background.png);
+    margin: 0 auto;
 }
 
 #gameWorld, #gameOver{
