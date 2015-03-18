@@ -42,7 +42,10 @@
                 </div>
 
                 <div id="gameSplash" style="width: 900px;height:500px;">
-                    <a href="#" id="startGame">Click to start</a>
+                    <p><a href="#" id="startGame">Click to start</a>
+                    <br>
+                    <input type="text" id="playerName" value="" placeholder="Enter your name">
+                    </p>
                 </div>
                 <div id="gameOver" style="width: 900px;height:500px;">
                     <p>Your score was: <span id="gameScore">43</span>
@@ -109,10 +112,17 @@
                     var gameScore = document.getElementById("gameScore");
                     var restartGame = document.getElementById("restartGame");
 
+                    var playerName = "anonymous-" + Math.floor(Math.random()*1000 + 1);
+
                     startButton.addEventListener("click", function (e) {
                         e.preventDefault();
                         splash.style.display = "none";
                         gameCanvas.style.display = "block";
+
+                        var name = document.getElementById("playerName").value;
+                        if(name != "")
+                            playerName = name;
+
                         game.start();
 
                     })
@@ -131,7 +141,7 @@
                         gameScore.innerText = game.getScore();
                         gameCanvas.style.display = "none";
                         gameOver.style.display = "block";
-                        // storeHighscore(game.getScore());
+                        // storeHighscore(playerName, game.getScore());
 
                     })
                 </script>

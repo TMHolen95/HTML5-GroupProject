@@ -20,19 +20,17 @@ and open the template in the editor.
     text-align: center;
     font-size: 1.8em;
 }
-#gameSplash a, #gameOver p{
+#gameSplash p, #gameOver p{
     color: black;
-    display: block;
     height: 100%;
     width: 100%;
     padding-top: 30%;
-    vertical-align: middle;
     box-sizing: border-box;
 }
 #gameScore{
     display: block;
 }
-#restartGame{
+#restartGame, #startGame{
     color: blue;
 }
 
