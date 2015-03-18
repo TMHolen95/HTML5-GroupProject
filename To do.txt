@@ -8,12 +8,11 @@ Example: 29. Do something to the project. - TMH
 5. Create a enemy figure for the game. - TMH
 6. Create another enemy figure for the game. - TMH
 7. Create a punching sound effect for the game. - <TMH
-8. Create a spider enemy sound effect. AMG
-9. Create another JavaScript applications for the "JavaScript Fun" page. (Example: Get todays date) AMG
-10. Create another JavaScript applications for the "JavaScript Fun" page. (Example: Random fact) AMG
-11. Create a background - TMH
-12. Create attack graphic - TMH
-13. Create player's house - TMH
-14. Create Bat ememy sound effect - TMH
-15. Find portrait image of yourself (to the about page) - All
-16. Document some of the work we do by taking some photos (for the creation page)
+8. Create another JavaScript applications for the "JavaScript Fun" page. (Example: Get todays date) AMG
+9. Create another JavaScript applications for the "JavaScript Fun" page. (Example: Random fact) AMG
+10. Create a background - TMH
+11. Create attack graphic - TMH
+12. Create player's house - TMH
+13. Create Bat ememy sound effect - TMH
+14. Find portrait image of yourself (to the about page) - All
+15. Document some of the work we do by taking some photos (for the creation page)
