@@ -176,11 +176,6 @@ footer small i a:hover{
     text-align: left;
 }
 
-.divInlineBlockContainer img{
-    float: right;
-    padding-right: 1vw;
-}
-
 .blogContainer{
     width: 64vw;
     height: auto;
@@ -323,7 +318,15 @@ table td, table th{
 }
 
 /* Adds a top margin */
-.topMargin
-{
+.topMargin {
     margin-top: 2em;
+}
+
+/* Centered images */
+.imageCentered {
+    width: 700px;
+    height: 525px;
+    display: block;
+    border: 0.1em solid #000000;
+    margin: 1.5em auto 0 auto;
 }
