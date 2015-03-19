@@ -49,7 +49,7 @@
                             ?>
                             <li>
                                 <?php
-                                echo $score["name"], " - ", $score["score"], " - ", date('Y-m-d H:i:s',strtotime($score['date']));
+                                echo $score["name"], " - ", $score["score"], " - ", date('Y-m-d H:i:s',strtotime($score['date'] . ' UTC'));
                                 ?>
                             </li>
                             <?php
