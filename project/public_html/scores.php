@@ -34,6 +34,8 @@
                         <?php
                         require "dbconnect.php";
 
+                        date_default_timezone_set('Europe/Oslo');
+
                         /* Execute a prepared statement by passing an array of values */
                         $sth = $dbh->prepare('SELECT name, score, date
                             FROM highscores
@@ -47,7 +49,7 @@
                             ?>
                             <li>
                                 <?php
-                                echo $score["name"], " - ", $score["score"], " - ", $score["date"];
+                                echo $score["name"], " - ", $score["score"], " - ", date('Y-m-d H:i:s',strtotime($score['date']));
                                 ?>
                             </li>
                             <?php
