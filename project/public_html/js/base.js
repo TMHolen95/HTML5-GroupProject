@@ -222,6 +222,7 @@ function InputEvents() {
 }
 
 
+
 function MainGame(canvasId) {
 
     var canvas = document.getElementById(canvasId);
@@ -290,7 +291,6 @@ function MainGame(canvasId) {
 
         _detectCollisions();
 
-        RESOURCES.addSound("enemyDeath", "sound/enemyDeath.mp3");
 
         // Remove deleted objects
         for (var i = 0; i < removed.length; i++) {
@@ -509,6 +509,7 @@ var RESOURCES = new (function () {
 
 
 
+RESOURCES.addSound("enemyDeath", "sound/enemyDeath.mp3");
 
 
 
