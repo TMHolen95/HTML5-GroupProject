@@ -56,6 +56,36 @@ and open the template in the editor.
               </script>
               <button type="button" onclick="hello()">Click me</button>
               <p>Clicks: <a id="clicks">0</a></p>
+			  
+              <script>
+
+              function showTime() {
+			  var monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+			  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+			 
+			  var daysArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+			 
+			  var dateObj = new Date();
+			 
+			  var year = dateObj.getFullYear();
+			  var month = dateObj.getMonth();
+			  var numDay = dateObj.getDate();
+			  var day = dateObj.getDay();
+			  var hour = dateObj.getHours();
+			  var minute = dateObj.getMinutes();
+			  var second = dateObj.getSeconds();
+			 
+			  if (minute < 10) minute = "0" + minute;
+			 
+			  if (second < 10) second = "0" + second;
+			 
+			  var out = daysArr[day] + ", " + numDay + " " + monthsArr[month]
+			  + " " + year + ", " + hour + ":" + minute + ":" + second;
+			 
+			  return out;
+			}
+              </script>
+				<button onclick="JavaScript:alert(showTime());">Get current Date & Time</button>
               
               
 
