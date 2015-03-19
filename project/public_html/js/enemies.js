@@ -1,37 +1,31 @@
 RESOURCES.addImage("enemy1", "img/enemy1.png");
+RESOURCES.addImage("enemy2", "img/enemy2.png");
 
-Enemy1.prototype = Object.create(GameObject.prototype);
 
-function Enemy1(x, vx) {
+EnemyBase.prototype = Object.create(GameObject.prototype);
+
+function EnemyBase(x, vx) {
     GameObject.call(this);
 
     this.pos.x = x;
-    this.pos.y = 40;
     this.vel.x = vx;
-
-    this.padding.left = 0;
-    this.padding.right = 40;
-    this.padding.bottom = 40;
-    this.padding.top = 0;
 
     this.type = "enemy";
 
-
-    this.hp = 1;
+    this.padding.right = this.img.width;
+    this.padding.bottom = this.img.height;
 
     var _lastJump = 0;
     var _jumpFrequency = Math.floor((Math.random() * 10) + 10);
     var _nextJump = _calculateNextJump();
 
-
-
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
         ctx.font="12px sans-serif";
-        ctx.fillText(this.hp, pos.x + 15, pos.y-10);
-        ctx.drawImage(RESOURCES.getImage("enemy1"), pos.x, pos.y, 40, 40);
+        ctx.textAlign="center";
+        ctx.fillText(this.hp, pos.x + this.img.width/2, pos.y-10);
+        this.img.draw(ctx, pos.x, pos.y);
     };
-
 
     this.update = function (timedelta) {
 
@@ -48,15 +42,7 @@ function Enemy1(x, vx) {
         GameObject.prototype.update.call(this, timedelta);
     };
 
-
     this.onWallHit = function (direction, canvas) {
-
-        // switch(direction){
-        //     case DIRECTION.LEFT:
-        //     case DIRECTION.RIGHT:
-        //         this.destroy();
-        //         return;
-        // }
         GameObject.prototype.onWallHit.call(this, direction, canvas);
     };
 
@@ -67,27 +53,31 @@ function Enemy1(x, vx) {
 }
 
 
+Enemy1.prototype = Object.create(EnemyBase.prototype);
 
-RESOURCES.addImage("enemy2", "img/enemy2.png");
+function Enemy1(x, vx) {
 
-Enemy2.prototype = Object.create(Enemy1.prototype);
+    this.img = new ImageDrawer("enemy1", 40, 40)
+
+    EnemyBase.call(this, x, vx);
+
+    this.pos.y = 40;
+
+    this.hp = 1;
+
+}
+
+
+Enemy2.prototype = Object.create(EnemyBase.prototype);
 
 function Enemy2(x, vx) {
-    Enemy1.call(this, x, vx);
+
+    this.img = new ImageDrawer("enemy2", 80, 80)
+
+    EnemyBase.call(this, x, vx);
 
     this.pos.y = 80;
 
-    this.padding.left = 0;
-    this.padding.right = 80;
-    this.padding.bottom = 80;
-    this.padding.top = 0;
-
     this.hp = 3;
-
-    this.draw = function (ctx) {
-        var pos = this.getRealCoordinates(ctx);
-        ctx.font="12px sans-serif";
-        ctx.fillText(this.hp, pos.x + 35, pos.y-10);
-        ctx.drawImage(RESOURCES.getImage("enemy2"), pos.x, pos.y, 80, 80);
-    };
 }
+

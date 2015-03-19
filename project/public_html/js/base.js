@@ -313,7 +313,7 @@ function MainGame(canvasId) {
         for (var i = 0; i < objects.length; i++) {
             if (objects[i].hidden)
                 continue;
-            //_drawHitbox(objects[i]);
+            // _drawHitbox(objects[i]);
             objects[i].draw(ctx);
         }
 
@@ -518,9 +518,18 @@ var RESOURCES = new (function () {
 })();
 
 
-
-
 RESOURCES.addSound("enemyDeath", "sound/enemyDeath.mp3");
+
+
+function ImageDrawer(imageName, width, height){
+
+    this.width = width;
+    this.height = height;
+
+    this.draw = function(ctx, x, y){
+        ctx.drawImage(RESOURCES.getImage(imageName), x, y, this.width, this.height);
+    }
+}
 
 
 

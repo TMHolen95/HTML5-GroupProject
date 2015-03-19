@@ -4,8 +4,6 @@ Castle.prototype = Object.create(GameObject.prototype);
 
 function Castle(game) {
     GameObject.call(this);
-    this.pos.x = 390;
-    this.pos.y = 100;
 
     var _this = this;
 
@@ -16,23 +14,29 @@ function Castle(game) {
     this.vel.x = 0;
     this.vel.y = 0;
 
+    this.hp = 20;
+
+
+    this.pos.x = 370;
+    this.pos.y = 120;
+
+    var _img = new ImageDrawer("castle", 160, 120);
 
     // The padding is a little smaller than 
     // the image to make the enemies go slightly into 
     // the castle before they disappear.
-    this.padding.left = 0;
-    this.padding.right = 120;
-    this.padding.bottom = 120;
-    this.padding.top = 0;
+    this.padding.left = -20;
+    this.padding.right = _img.width - 20;
+    this.padding.bottom = _img.height;
+    this.padding.top = -10;
 
-    this.hp = 20;
 
     this.draw = function(ctx) {
         var pos = this.getRealCoordinates(ctx);
         ctx.font="12px sans-serif";
-        ctx.fillText(this.hp, pos.x + 50, pos.y-20);
-        // Draw the image a little outside the padding
-        ctx.drawImage(RESOURCES.getImage("castle"), pos.x-20, pos.y-20, 160, 120);
+        ctx.textAlign="center";
+        ctx.fillText(this.hp, pos.x + _img.width/2, pos.y-10);
+        _img.draw(ctx, pos.x, pos.y);
     };
 
 

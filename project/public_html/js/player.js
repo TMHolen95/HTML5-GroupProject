@@ -11,6 +11,14 @@ function Player(leftAttack, rightAttack) {
     this.pos.x = 350;
     this.pos.y = 30;
 
+    this.type = "player";
+
+    var _imgPlayer = new ImageDrawer("player", 30, 70);
+    var _imgStunned = new ImageDrawer("stunned", 20, 30);
+
+    this.padding.right = _imgPlayer.width;
+    this.padding.bottom = _imgPlayer.height;
+
     var _this = this;
     var playerRunSpeed = 35;
     var playerJumpHeight = 60;
@@ -18,29 +26,22 @@ function Player(leftAttack, rightAttack) {
     var _moving = false;
     var _groundDecel = 20;
 
-    this.type = "player";
-
-    this.padding.left = 0;
-    this.padding.right = 30;
-    this.padding.bottom = 70;
-    this.padding.top = 0;
-
-
     // The time of the last attack
     var _lastAttack = 0;
+    // Delay between attacks
     var _attackDelay = 100; // milliseconds
 
-
     var _lastStunned = 0;
+    // Delay before next stun is possible.
     var _stunnedDelay = 1000; // milliseconds
 
 
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
         if (this.isStunned()) {
-            ctx.drawImage(RESOURCES.getImage("stunned"), pos.x + 5, pos.y - 40, 20, 30);
+            _imgStunned.draw(ctx, pos.x+5, pos.y-40);
         }
-        ctx.drawImage(RESOURCES.getImage("player"), pos.x, pos.y, 30, 70);
+        _imgPlayer.draw(ctx, pos.x, pos.y);
     };
 
 
@@ -64,7 +65,7 @@ function Player(leftAttack, rightAttack) {
         // Position the attacks next to the player
         rightAttack.pos.x = this.pos.x + this.padding.right + 5;
         rightAttack.pos.y = this.pos.y - 10;
-        leftAttack.pos.x = this.pos.x - this.padding.left - leftAttack.padding.right - 10;
+        leftAttack.pos.x = this.pos.x - this.padding.left - leftAttack.padding.right - 5;
         leftAttack.pos.y = this.pos.y - 10;
     };
 
@@ -79,7 +80,7 @@ function Player(leftAttack, rightAttack) {
             setTimeout(function () {
                 _lastStunned = (new Date()).getTime();
                 _setAttacksDisabled(false);
-            }, this.stunnedTimeout);
+            }, this.stunnedTimeout)
         }
     };
 
@@ -154,10 +155,10 @@ RightAttack.prototype = Object.create(GameObject.prototype);
 function RightAttack(imageName) {
     GameObject.call(this);
 
-    this.padding.left = 0;
-    this.padding.right = 22;
-    this.padding.bottom = 40;
-    this.padding.top = 0;
+    var _img = new ImageDrawer("attack-right", 22, 40);
+
+    this.padding.right = _img.width;
+    this.padding.bottom = _img.height;
 
     this.type = "attack";
 
@@ -189,9 +190,9 @@ function RightAttack(imageName) {
         var pos = this.getRealCoordinates(ctx);
         ctx.save();
         // Rotate the image around the middle left edge
-        ctx.translate(pos.x, pos.y + 20);
+        ctx.translate(pos.x, pos.y + _img.height/2);
         ctx.rotate((this._visibleFrameCount * 6) * Math.PI / 180 - Math.PI / 2);
-        ctx.drawImage(RESOURCES.getImage("attack-right"), 0, -20, 22, 40);
+        _img.draw(ctx, 0, -_img.height/2);
         ctx.restore();
     };
 
@@ -218,13 +219,18 @@ LeftAttack.prototype = Object.create(RightAttack.prototype);
 function LeftAttack(imageName) {
     RightAttack.call(this);
 
+    var _img = new ImageDrawer("attack-left", 22, 40);
+
+    this.padding.right = _img.width;
+    this.padding.bottom = _img.height;
+
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
         ctx.save();
         // Rotate the image around the middle right edge
-        ctx.translate(pos.x + 22, pos.y + 20);
+        ctx.translate(pos.x + _img.width, pos.y + _img.height/2);
         ctx.rotate(-(this._visibleFrameCount * 6) * Math.PI / 180 + Math.PI / 2);
-        ctx.drawImage(RESOURCES.getImage("attack-left"), -22, -20, 22, 40);
+        _img.draw(ctx, -_img.width, -_img.height/2);
         ctx.restore();
     };
 }
