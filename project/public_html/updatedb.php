@@ -19,7 +19,7 @@ if(!ctype_digit($score)){
 require "dbconnect.php";
 
 /* Execute a prepared statement by passing an array of values */
-$sth = $dbh->prepare('INSERT INTO `highscores`(`name`, `score`) VALUES (:name, :score)');
+$sth = $dbh->prepare('INSERT INTO `highscores`(`name`, `score`, date) VALUES (:name, :score, UTC_TIMESTAMP())');
 
 $result = $sth->execute(array("name" => $playerName, "score" => $score));
 if($result){
