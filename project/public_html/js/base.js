@@ -440,27 +440,27 @@ function MainGame(canvasId) {
 
         var leftMost = a;
         var rightMost = b;
-        if (a.pos.x > b.pos.x) {
+        if ((a.pos.x - a.padding.left) > (b.pos.x - b.padding.left)) {
             leftMost = b;
             rightMost = a;
         }
 
         // If the rightmost object is further to the right than the 
         // leftmost plus its witdh there is no collision.
-        if ((leftMost.pos.x + leftMost.padding.right) < rightMost.pos.x)
+        if ((leftMost.pos.x + leftMost.padding.right) < (rightMost.pos.x - rightMost.padding.left))
             return false;
 
         var upper = a;
         var lower = b;
 
-        if (a.pos.y < b.pos.y) {
+        if ((a.pos.y + a.padding.top) < (b.pos.y + b.padding.top)) {
             upper = b;
             lower = a;
         }
 
         // If the lower object is lower than the 
         // upper plus its height there is no collision.
-        if ((upper.pos.y - upper.padding.bottom) > lower.pos.y)
+        if ((upper.pos.y - upper.padding.bottom) > (lower.pos.y + lower.padding.top))
             return false;
 
         return true;
@@ -471,7 +471,10 @@ function MainGame(canvasId) {
     // Draw the hitbox of an object for debug purposes.
     function _drawHitbox(obj){
         var p = obj.getRealCoordinates(ctx);
-        ctx.strokeRect(p.x, p.y, obj.padding.right, obj.padding.bottom);
+        ctx.strokeRect(p.x - obj.padding.left,
+                       p.y - obj.padding.top,
+                       obj.padding.left + obj.padding.right,
+                       obj.padding.top + obj.padding.bottom);
     }
 }
 
