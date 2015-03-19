@@ -20,7 +20,7 @@ function Enemy1(x, vx) {
     this.hp = 1;
 
     var _lastJump = 0;
-    var _jumpFrequency = Math.floor((Math.random() * 10) + 10)
+    var _jumpFrequency = Math.floor((Math.random() * 10) + 10);
     var _nextJump = _calculateNextJump();
 
 
@@ -90,5 +90,4 @@ function Enemy2(x, vx) {
         ctx.fillText(this.hp, pos.x + 35, pos.y-10);
         ctx.drawImage(RESOURCES.getImage("enemy2"), pos.x, pos.y, 80, 80);
     };
-
 }

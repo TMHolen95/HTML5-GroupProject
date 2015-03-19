@@ -20,10 +20,10 @@ function Castle(game) {
     // The padding is a little smaller than 
     // the image to make the enemies go slightly into 
     // the castle before they disappear.
-    this.padding.left = 0;
-    this.padding.right = 20;
+    this.padding.left = 50;
+    this.padding.right = 50;
     this.padding.bottom = 90;
-    this.padding.top = 0;
+    this.padding.top = 20;
 
     this.hp = 20;
 

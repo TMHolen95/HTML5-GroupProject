@@ -1,4 +1,5 @@
 RESOURCES.addImage("player", "img/player.png");
+RESOURCES.addImage("stunned", "img/stunned.png");
 RESOURCES.addSound("attack1", "sound/hoSound.mp3");
 RESOURCES.addSound("attack2", "sound/hiSound.mp3");
 RESOURCES.addSound("attack3", "sound/haSound.mp3");
@@ -36,9 +37,8 @@ function Player(leftAttack, rightAttack) {
 
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
-        if(this.isStunned()){
-            ctx.font="15px sans-serif";
-            ctx.fillText("X", pos.x + 15, pos.y-10);
+        if (this.isStunned()) {
+            ctx.drawImage(RESOURCES.getImage("stunned"), pos.x + 5, pos.y - 40, 20, 30);
         }
         ctx.drawImage(RESOURCES.getImage("player"), pos.x, pos.y, 30, 70);
     };
@@ -46,7 +46,7 @@ function Player(leftAttack, rightAttack) {
 
     this.update = function (timedelta) {
 
-        if(this.isStunned()){
+        if (this.isStunned()) {
             // Prevent movement
             this.vel.x = 0;
         }
@@ -69,14 +69,14 @@ function Player(leftAttack, rightAttack) {
     };
 
 
-    this.collisionDetected = function(obj){
-        if(!this.isStunned() && obj.type == "enemy" && 
-           ((new Date()).getTime() - _lastStunned) > _stunnedDelay &&
-           !obj.isStunned()
-           ){
+    this.collisionDetected = function (obj) {
+        if (!this.isStunned() && obj.type == "enemy" &&
+                ((new Date()).getTime() - _lastStunned) > _stunnedDelay &&
+                !obj.isStunned()
+                ) {
             this.stun();
             _setAttacksDisabled(true);
-            setTimeout(function(){
+            setTimeout(function () {
                 _lastStunned = (new Date()).getTime();
                 _setAttacksDisabled(false);
             }, this.stunnedTimeout);
@@ -108,44 +108,42 @@ function Player(leftAttack, rightAttack) {
 
     playerInput.on("leftAttack", function (released)
     {
-        if(!released && _canDoAttack()){
+        if (!released && _canDoAttack()) {
             _executeAttack(leftAttack);
         }
     });
 
     playerInput.on("rightAttack", function (released)
     {
-        if(!released && _canDoAttack()){
+        if (!released && _canDoAttack()) {
             _executeAttack(rightAttack);
         }
     });
 
 
-    function _canDoAttack(){
+    function _canDoAttack() {
         return !_this.isStunned() && ((new Date()).getTime() - _lastAttack) > _attackDelay;
     }
 
-    function _executeAttack(attack){
+    function _executeAttack(attack) {
         _lastAttack = (new Date()).getTime();
         _playAttackSound();
         attack.execute();
 
     }
 
-    function _setAttacksDisabled(state){
+    function _setAttacksDisabled(state) {
         leftAttack.setDisabled(state);
         rightAttack.setDisabled(state);
     }
 
 
-    function _playAttackSound(){
-        
-        var sound_nr = Math.floor((Math.random()*3)) + 1;
-        RESOURCES.getSound("attack"+sound_nr).play();
+    function _playAttackSound() {
+
+        var sound_nr = Math.floor((Math.random() * 3)) + 1;
+        RESOURCES.getSound("attack" + sound_nr).play();
     }
 }
-
-
 
 
 RESOURCES.addImage("attack-left", "img/leftAttack.png");
@@ -153,7 +151,7 @@ RESOURCES.addImage("attack-right", "img/rightAttack.png");
 
 RightAttack.prototype = Object.create(GameObject.prototype);
 
-function RightAttack(imageName){
+function RightAttack(imageName) {
     GameObject.call(this);
 
     this.padding.left = 0;
@@ -170,17 +168,17 @@ function RightAttack(imageName){
     // The number of frames the attack currently has been visible
     this._visibleFrameCount = 0;
 
-    this.setDisabled = function(disabled){
+    this.setDisabled = function (disabled) {
         _temporaryDisabled = disabled;
     };
 
-    this.update = function(){
-        if(this.hidden)
+    this.update = function () {
+        if (this.hidden)
             return;
 
         this._visibleFrameCount++;
 
-        if(this._visibleFrameCount > 20)
+        if (this._visibleFrameCount > 20)
             this.hidden = true;
 
         // The attack should not be affected by gravity so
@@ -192,23 +190,23 @@ function RightAttack(imageName){
         ctx.save();
         // Rotate the image around the middle left edge
         ctx.translate(pos.x, pos.y + 20);
-        ctx.rotate((this._visibleFrameCount*6)*Math.PI/180 - Math.PI/2);
+        ctx.rotate((this._visibleFrameCount * 6) * Math.PI / 180 - Math.PI / 2);
         ctx.drawImage(RESOURCES.getImage("attack-right"), 0, -20, 22, 40);
         ctx.restore();
     };
 
-    this.execute = function(){
+    this.execute = function () {
         this.hidden = false;
         this._visibleFrameCount = 0;
     };
 
-    this.onWallHit = function(direction){
+    this.onWallHit = function (direction) {
         // do nothing
     };
 
 
-    this.collisionDetected = function(obj){
-        if(!_temporaryDisabled && obj.type == "enemy" && !obj.isStunned()){
+    this.collisionDetected = function (obj) {
+        if (!_temporaryDisabled && obj.type == "enemy" && !obj.isStunned()) {
             obj.takeHit();
             obj.stun();
         }
@@ -217,18 +215,16 @@ function RightAttack(imageName){
 
 LeftAttack.prototype = Object.create(RightAttack.prototype);
 
-function LeftAttack(imageName){
+function LeftAttack(imageName) {
     RightAttack.call(this);
 
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
         ctx.save();
         // Rotate the image around the middle right edge
-        ctx.translate(pos.x + 22,  pos.y + 20);
-        ctx.rotate(-(this._visibleFrameCount*6)*Math.PI/180 + Math.PI/2);
+        ctx.translate(pos.x + 22, pos.y + 20);
+        ctx.rotate(-(this._visibleFrameCount * 6) * Math.PI / 180 + Math.PI / 2);
         ctx.drawImage(RESOURCES.getImage("attack-left"), -22, -20, 22, 40);
         ctx.restore();
     };
-
 }
-

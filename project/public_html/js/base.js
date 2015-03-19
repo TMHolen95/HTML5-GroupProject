@@ -82,15 +82,15 @@ function GameObject() {
         this.deleted = true;
     };
 
-    this.takeHit = function(){
+    this.takeHit = function () {
         this.hp--;
-        if(this.hp == 0)
+        if (this.hp == 0)
             this.destroy();
     };
 
-    this.stun = function(){
+    this.stun = function () {
 
-        if(this.stunned)
+        if (this.stunned)
             return;
 
         this.stunned = true;
@@ -102,7 +102,7 @@ function GameObject() {
         // Stop sideways movement
         this.vel.x = 0;
 
-        setTimeout(function(){
+        setTimeout(function () {
             // Reset values
             _this.vel.x = _vel_x;
             _this.pos.x = _pos_x
@@ -114,22 +114,20 @@ function GameObject() {
         }, this.stunnedTimeout);
     }
 
-    this.isStunned = function(){
+    this.isStunned = function () {
         return this.stunned;
     }
 
 
     // Make the enemy shake from side to side
-    this._createShakeEffect = function(){
-        if((_shakeCounter % 2 == 0)){
+    this._createShakeEffect = function () {
+        if ((_shakeCounter % 2 == 0)) {
             this.pos.x += 10;
-        }else
+        } else
             this.pos.x -= 10;
-        
+
         _shakeCounter++;
     }
-
-
 }
 
 
@@ -142,7 +140,7 @@ GameObject.prototype.draw = function (ctx) {
 // update its position.
 GameObject.prototype.update = function (timedelta) {
 
-    if(this.stunned){
+    if (this.stunned) {
         this._createShakeEffect();
     }
 
@@ -243,7 +241,7 @@ function MainGame(canvasId) {
 
     var _prevTime = null;
 
-    this.reset = function(){
+    this.reset = function () {
         _score = 0;
         objects = [];
         _running = false;
@@ -252,21 +250,21 @@ function MainGame(canvasId) {
 
     this.addGameObject = function (obj) {
         objects.push(obj);
-        if(obj.type == "enemy")
+        if (obj.type == "enemy")
             _enemyCount++;
     };
 
-    this.getEnemyCount = function(){
+    this.getEnemyCount = function () {
         return _enemyCount;
     };
 
 
-    this.setEnemySpawner = function(spawner){
+    this.setEnemySpawner = function (spawner) {
         _enemySpawner = spawner;
     }
 
 
-    this.getScore = function(){
+    this.getScore = function () {
         return _score;
     }
 
@@ -286,18 +284,23 @@ function MainGame(canvasId) {
                 removed.push(i);
             else
                 objects[i].update(timeDelta / TIME_SCALING);
-        };
+        }
+        ;
 
 
         _detectCollisions();
 
+        RESOURCES.addSound("enemyDeath", "sound/enemyDeath.mp3");
 
         // Remove deleted objects
         for (var i = 0; i < removed.length; i++) {
-            if(objects[removed[i]].type == "enemy"){
+            if (objects[removed[i]].type == "enemy") {
                 _enemyCount--;
-                if(objects[removed[i]].hp == 0)
+                if (objects[removed[i]].hp == 0)
+                {
                     _score++;
+                    RESOURCES.getSound("enemyDeath").play();
+                }
             }
 
             objects.splice(removed[i], 1);
@@ -308,13 +311,13 @@ function MainGame(canvasId) {
 
         // Draw objects
         for (var i = 0; i < objects.length; i++) {
-            if(objects[i].hidden)
+            if (objects[i].hidden)
                 continue;
             objects[i].draw(ctx);
         }
 
 
-        if(_enemySpawner != null)
+        if (_enemySpawner != null)
             _enemySpawner.update(time);
 
 
@@ -322,14 +325,14 @@ function MainGame(canvasId) {
     };
 
 
-    this.registerGameOverCallback = function(func){
+    this.registerGameOverCallback = function (func) {
         _gameOverCallback = func;
 
     }
 
-    this.gameOver = function(){
+    this.gameOver = function () {
         _running = false;
-        if(_gameOverCallback != null)
+        if (_gameOverCallback != null)
             _gameOverCallback();
     }
 
@@ -339,7 +342,7 @@ function MainGame(canvasId) {
         _running = true;
 
         function loop(time) {
-            if(!_running)
+            if (!_running)
                 return;
 
             window.requestAnimationFrame(loop);
@@ -380,21 +383,21 @@ function MainGame(canvasId) {
 
             var obj_a = objects[i];
 
-            if(obj_a.hidden || obj_a.deleted)
+            if (obj_a.hidden || obj_a.deleted)
                 continue;
 
             _detectWallHit(obj_a);
 
-            for(var j=0; j < num_objects; j++){
+            for (var j = 0; j < num_objects; j++) {
 
 
-                if(i == j || objects[j].hidden)
+                if (i == j || objects[j].hidden)
                     continue;
 
                 var obj_b = objects[j];
 
 
-                if(_checkForCollision(obj_a, obj_b)){
+                if (_checkForCollision(obj_a, obj_b)) {
                     obj_a.collisionDetected(obj_b);
                     obj_b.collisionDetected(obj_a);
 
@@ -428,7 +431,7 @@ function MainGame(canvasId) {
     }
 
     // Simple check for non-rotating rectangles.
-    function _checkForCollision(a, b){
+    function _checkForCollision(a, b) {
 
         // TODO: Currently no objects use the left or top
         // padding so we don't take this into account.
@@ -436,27 +439,27 @@ function MainGame(canvasId) {
 
         var leftMost = a;
         var rightMost = b;
-        if(a.pos.x > b.pos.x){
+        if (a.pos.x > b.pos.x) {
             leftMost = b;
             rightMost = a;
         }
 
         // If the rightmost object is further to the right than the 
         // leftmost plus its witdh there is no collision.
-        if((leftMost.pos.x + leftMost.padding.right) < rightMost.pos.x)
+        if ((leftMost.pos.x + leftMost.padding.right) < rightMost.pos.x)
             return false;
 
         var upper = a;
         var lower = b;
 
-        if(a.pos.y < b.pos.y){
+        if (a.pos.y < b.pos.y) {
             upper = b;
             lower = a;
         }
 
         // If the lower object is lower than the 
         // upper plus its height there is no collision.
-        if((upper.pos.y - upper.padding.bottom) > lower.pos.y)
+        if ((upper.pos.y - upper.padding.bottom) > lower.pos.y)
             return false;
 
         return true;
