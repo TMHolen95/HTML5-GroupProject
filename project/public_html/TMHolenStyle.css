@@ -161,11 +161,6 @@ footer small i a:hover{
     overflow-y: auto;
 }
 
-
-.divInlineBlockContainer:hover{
-    background-color:  #444444;
-}
-
 .divInlineBlockContainer h2{
     text-align: center;
     color: #6699ff;
