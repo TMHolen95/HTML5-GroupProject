@@ -41,83 +41,87 @@ and open the template in the editor.
             </header>
 
             <main>    
-              <div class="center">
+                <div class="center">
                     <h1 class="noMarginLeft">Welcome to the JavaScript Fun site!</h1>
 
                     <div class="divInlineBlockContainer">
                         <h2>Click counter</h2>
-                      
-              <script type="text/javascript">
 
-              var clicks = 0;
-              function hello() {
-                  clicks += 1;
-                  document.getElementById("clicks").innerHTML = clicks; };
-              </script>
-              <button type="button" onclick="hello()">Click me</button>
-              <p>Clicks: <a id="clicks">0</a></p>
-			       </div>
-		<div class="divInlineBlockContainer">
-	
-					<h3>Date & Time</h3>
+                        <script type="text/javascript">
 
-             <script>
+                            var clicks = 0;
+                            function hello() {
+                                clicks += 1;
+                                document.getElementById("clicks").innerHTML = clicks;
+                            }
+                            ;
+                        </script>
+                        <button type="button" onclick="hello()">Click me</button>
+                        <p>Clicks: <a id="clicks">0</a></p>
+                    </div>
+                    <div class="divInlineBlockContainer">
 
-              function showTime() {
-			  var monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-			  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-			 
-			  var daysArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-			 
-			  var dateObj = new Date();
-			 
-			  var year = dateObj.getFullYear();
-			  var month = dateObj.getMonth();
-			  var numDay = dateObj.getDate();
-			  var day = dateObj.getDay();
-			  var hour = dateObj.getHours();
-			  var minute = dateObj.getMinutes();
-			  var second = dateObj.getSeconds();
-			 
-			  if (minute < 10) minute = "0" + minute;
-			 
-			  if (second < 10) second = "0" + second;
-			 
-			  var out = daysArr[day] + ", " + numDay + " " + monthsArr[month]
-			  + " " + year + ", " + hour + ":" + minute + ":" + second;
-			       
-				document.getElementById("dateOut").innerHTML = out;
-			}
-              </script>
-			  
-				<button onclick="JavaScript:showTime();">Get current Date & Time</button> 
-				<p id="dateOut"></p>
-		</div>		
-		<div class="divInlineBlockContainer">		
-				<p>Click the button to display a random fun fact!</p>
-				<button onclick="randomFact()">Go ahead</button>
+                        <h3>Date & Time</h3>
 
-				<p id="trivia"></p>
+                        <script>
 
-			  <script>
-				function randomFact() {
-				var randomfactssArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Thu", "Fri", "Sat"];
-					document.getElementById("trivia").innerHTML = randomfactssArr[Math.floor((Math.random())*10)];
-				}
-				</script>
-		</div>
+                            function showTime() {
+                                var monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+                                var daysArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+                                var dateObj = new Date();
+
+                                var year = dateObj.getFullYear();
+                                var month = dateObj.getMonth();
+                                var numDay = dateObj.getDate();
+                                var day = dateObj.getDay();
+                                var hour = dateObj.getHours();
+                                var minute = dateObj.getMinutes();
+                                var second = dateObj.getSeconds();
+
+                                if (minute < 10)
+                                    minute = "0" + minute;
+
+                                if (second < 10)
+                                    second = "0" + second;
+
+                                var out = daysArr[day] + ", " + numDay + " " + monthsArr[month]
+                                        + " " + year + ", " + hour + ":" + minute + ":" + second;
+
+                                document.getElementById("dateOut").innerHTML = out;
+                            }
+                        </script>
+
+                        <button onclick="JavaScript:showTime();">Get current Date & Time</button> 
+                        <p id="dateOut"></p>
+                    </div>		
+                    <div class="divInlineBlockContainer">		
+                        <p>Click the button to display a random fun fact!</p>
+                        <button onclick="randomFact()">Go ahead</button>
+
+                        <p id="trivia"></p>
+
+                        <script>
+                            function randomFact() {
+                                var randomfactssArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Thu", "Fri", "Sat"];
+                                document.getElementById("trivia").innerHTML = randomfactssArr[Math.floor((Math.random()) * 10)];
+                            }
+                        </script>
+                    </div>
             </main>
 
 
-        <aside id="Right">
-            <h4>Advertisement:</h4>
-        </aside>
+            <aside id="Right">
+                <h4>Advertisement:</h4>
+            </aside>
 
-        <footer>
-            <div id="footerContainer">
-                <small><i>Team4 &copy; 2015 - <a href="">TMHolen@tmholen.com</a></i></small>
-            </div>
-        </footer>  
+            <footer>
+                <div id="footerContainer">
+                    <small><i>Team4 &copy; 2015 - <a href="">TMHolen@tmholen.com</a></i></small>
+                </div>
+            </footer>  
 
     </body>
 </html>
