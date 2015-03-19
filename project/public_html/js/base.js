@@ -313,6 +313,7 @@ function MainGame(canvasId) {
         for (var i = 0; i < objects.length; i++) {
             if (objects[i].hidden)
                 continue;
+            //_drawHitbox(objects[i]);
             objects[i].draw(ctx);
         }
 
@@ -464,6 +465,13 @@ function MainGame(canvasId) {
 
         return true;
 
+    }
+
+
+    // Draw the hitbox of an object for debug purposes.
+    function _drawHitbox(obj){
+        var p = obj.getRealCoordinates(ctx);
+        ctx.strokeRect(p.x, p.y, obj.padding.right, obj.padding.bottom);
     }
 }
 
