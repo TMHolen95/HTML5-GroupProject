@@ -78,7 +78,7 @@
                     function storeHighscore(player, score){
 
                         var http = new XMLHttpRequest();
-                        var url = "scores.php";
+                        var url = "updatedb.php";
                         var params = "player="+player+"&score="+score;
 
                         http.open("POST", url, true);
@@ -141,9 +141,11 @@
                         gameScore.innerText = game.getScore();
                         gameCanvas.style.display = "none";
                         gameOver.style.display = "block";
-                        // storeHighscore(playerName, game.getScore());
+                        if(window.location.host != "")
+                            storeHighscore(playerName, game.getScore());
 
                     })
+
                 </script>
             </main>
         </div>
