@@ -56,13 +56,11 @@ and open the template in the editor.
               </script>
               <button type="button" onclick="hello()">Click me</button>
               <p>Clicks: <a id="clicks">0</a></p>
-              </div>   
-			  
-			  <div>					
+			       </div>
+		<div class="divInlineBlockContainer">
+	
 					<h3>Date & Time</h3>
-                    </div>
-		<p></p>
-		<div>
+
              <script>
 
               function showTime() {
@@ -91,8 +89,22 @@ and open the template in the editor.
 				document.getElementById("dateOut").innerHTML = out;
 			}
               </script>
+			  
 				<button onclick="JavaScript:showTime();">Get current Date & Time</button> 
-				<p id="dateOut"></p>		
+				<p id="dateOut"></p>
+		</div>		
+		<div class="divInlineBlockContainer">		
+				<p>Click the button to display a random fun fact!</p>
+				<button onclick="randomFact()">Go ahead</button>
+
+				<p id="trivia"></p>
+
+			  <script>
+				function randomFact() {
+				var randomfactssArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Thu", "Fri", "Sat"];
+					document.getElementById("trivia").innerHTML = randomfactssArr[Math.floor((Math.random())*10)];
+				}
+				</script>
 		</div>
             </main>
 
