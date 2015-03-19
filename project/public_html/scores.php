@@ -34,6 +34,11 @@
                         <?php
                         require "dbconnect.php";
 
+                        function html_escape($str)
+                        {
+                            return htmlspecialchars($str, ENT_QUOTES);
+                        }
+
                         date_default_timezone_set('Europe/Oslo');
 
                         /* Execute a prepared statement by passing an array of values */
@@ -49,7 +54,7 @@
                             ?>
                             <li>
                                 <?php
-                                echo $score["name"], " - ", $score["score"], " - ", date('Y-m-d H:i:s',strtotime($score['date'] . ' UTC'));
+                                echo html_escape($score["name"]), " - ", $score["score"], " - ", date('Y-m-d H:i:s',strtotime($score['date'] . ' UTC'));
                                 ?>
                             </li>
                             <?php
