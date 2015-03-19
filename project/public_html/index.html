@@ -88,10 +88,7 @@
                         http.onreadystatechange = function() {
 
                             if(http.readyState == 4){
-                                if(http.status == 200){
-                                    alert(http.responseText);
-                                }
-                                else{
+                                if(http.status != 200){
                                     alert("Failed to store score.");
                                 }
                             }
