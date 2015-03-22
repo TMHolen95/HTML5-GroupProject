@@ -41,7 +41,7 @@ and open the template in the editor.
             </header>
 
             <main>    
-                <div class="center">
+              <div class="center">
                     <h1 class="noMarginLeft">Welcome to the JavaScript Fun site!</h1>
 
                     <div class="divInlineBlockContainer">
@@ -56,8 +56,14 @@ and open the template in the editor.
               </script>
               <button type="button" onclick="hello()">Click me</button>
               <p>Clicks: <a id="clicks">0</a></p>
+              </div>   
 			  
-              <script>
+			  <div>					
+					<h3>Date & Time</h3>
+                    </div>
+		<p></p>
+		<div>
+             <script>
 
               function showTime() {
 			  var monthsArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -81,21 +87,18 @@ and open the template in the editor.
 			 
 			  var out = daysArr[day] + ", " + numDay + " " + monthsArr[month]
 			  + " " + year + ", " + hour + ":" + minute + ":" + second;
-			 
-			  return out;
+			       
+				document.getElementById("dateOut").innerHTML = out;
 			}
               </script>
-				<button onclick="JavaScript:alert(showTime());">Get current Date & Time</button>
-              
-              
-
-                    </div>
+				<button onclick="JavaScript:showTime();">Get current Date & Time</button> 
+				<p id="dateOut"></p>		
+		</div>
             </main>
 
-        </div>
 
         <aside id="Right">
-            <h3>Advertisment:</h3>
+            <h4>Advertisement:</h4>
         </aside>
 
         <footer>
