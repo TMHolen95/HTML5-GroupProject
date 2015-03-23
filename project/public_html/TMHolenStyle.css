@@ -110,6 +110,15 @@ header{
     margin-right: auto;
 }
 
+#collectPrize {
+    position:relative; 
+    left:260px; 
+    top:15px; 
+    width:5px; 
+    height:5px;
+}
+
+
 /*Sidebars*/
 aside {
     /*    background: linear-gradient(-90deg, #111133, #111566, #111133);*/
