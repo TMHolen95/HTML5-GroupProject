@@ -434,9 +434,6 @@ function MainGame(canvasId) {
     // Simple check for non-rotating rectangles.
     function _checkForCollision(a, b) {
 
-        // TODO: Currently no objects use the left or top
-        // padding so we don't take this into account.
-        // If this change this code needs to be updatd.
 
         var leftMost = a;
         var rightMost = b;

@@ -42,11 +42,6 @@ function EnemyBase(x, vx) {
         GameObject.prototype.update.call(this, timedelta);
     };
 
-    this.onWallHit = function (direction, canvas) {
-        GameObject.prototype.onWallHit.call(this, direction, canvas);
-    };
-
-
     function _calculateNextJump() {
         return Math.floor((Math.random() * _jumpFrequency) + 1);
     }
