@@ -150,15 +150,15 @@ function Player(leftAttack, rightAttack) {
 RESOURCES.addImage("attack-left", "img/leftAttack.png");
 RESOURCES.addImage("attack-right", "img/rightAttack.png");
 
-RightAttack.prototype = Object.create(GameObject.prototype);
+BaseAttack.prototype = Object.create(GameObject.prototype);
 
-function RightAttack(imageName) {
+function BaseAttack(imageName) {
     GameObject.call(this);
 
-    var _img = new ImageDrawer("attack-right", 22, 40);
+    // this.img must be set in subclass
 
-    this.padding.right = _img.width;
-    this.padding.bottom = _img.height;
+    this.padding.right = this.img.width;
+    this.padding.bottom = this.img.height;
 
     this.type = "attack";
 
@@ -186,16 +186,6 @@ function RightAttack(imageName) {
         // we don't call the parent's update method.
     };
 
-    this.draw = function (ctx) {
-        var pos = this.getRealCoordinates(ctx);
-        ctx.save();
-        // Rotate the image around the middle left edge
-        ctx.translate(pos.x, pos.y + _img.height/2);
-        ctx.rotate((this._visibleFrameCount * 6) * Math.PI / 180 - Math.PI / 2);
-        _img.draw(ctx, 0, -_img.height/2);
-        ctx.restore();
-    };
-
     this.execute = function () {
         this.hidden = false;
         this._visibleFrameCount = 0;
@@ -205,7 +195,6 @@ function RightAttack(imageName) {
         // do nothing
     };
 
-
     this.collisionDetected = function (obj) {
         if (!_temporaryDisabled && obj.type == "enemy" && !obj.isStunned()) {
             obj.takeHit();
@@ -214,23 +203,42 @@ function RightAttack(imageName) {
     };
 }
 
-LeftAttack.prototype = Object.create(RightAttack.prototype);
+
+RightAttack.prototype = Object.create(BaseAttack.prototype);
+
+function RightAttack(imageName) {
+
+    this.img = new ImageDrawer("attack-right", 22, 40);
+
+    BaseAttack.call(this);
+
+    this.draw = function (ctx) {
+        var pos = this.getRealCoordinates(ctx);
+        ctx.save();
+        // Rotate the image around the middle left edge
+        ctx.translate(pos.x, pos.y + this.img.height/2);
+        ctx.rotate((this._visibleFrameCount * 6) * Math.PI / 180 - Math.PI / 2);
+        this.img.draw(ctx, 0, -this.img.height/2);
+        ctx.restore();
+    };
+}
+
+LeftAttack.prototype = Object.create(BaseAttack.prototype);
 
 function LeftAttack(imageName) {
-    RightAttack.call(this);
 
-    var _img = new ImageDrawer("attack-left", 22, 40);
+    this.img = new ImageDrawer("attack-left", 22, 40);
 
-    this.padding.right = _img.width;
-    this.padding.bottom = _img.height;
+    BaseAttack.call(this);
 
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
         ctx.save();
         // Rotate the image around the middle right edge
-        ctx.translate(pos.x + _img.width, pos.y + _img.height/2);
+        ctx.translate(pos.x + this.img.width, pos.y + this.img.height/2);
         ctx.rotate(-(this._visibleFrameCount * 6) * Math.PI / 180 + Math.PI / 2);
-        _img.draw(ctx, -_img.width, -_img.height/2);
+        this.img.draw(ctx, -this.img.width, -this.img.height/2);
         ctx.restore();
     };
 }
+
