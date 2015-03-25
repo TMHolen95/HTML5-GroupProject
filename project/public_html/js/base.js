@@ -464,12 +464,12 @@ function MainGame(canvasId) {
 
 
     // Draw the hitbox of an object for debug purposes.
-    function _drawHitbox(obj){
+    function _drawHitbox(obj) {
         var p = obj.getRealCoordinates(ctx);
         ctx.strokeRect(p.x - obj.padding.left,
-                       p.y - obj.padding.top,
-                       obj.padding.left + obj.padding.right,
-                       obj.padding.top + obj.padding.bottom);
+                p.y - obj.padding.top,
+                obj.padding.left + obj.padding.right,
+                obj.padding.top + obj.padding.bottom);
     }
 }
 
@@ -513,12 +513,12 @@ var RESOURCES = new (function () {
 })();
 
 
-function ImageDrawer(imageName, width, height){
+function ImageDrawer(imageName, width, height) {
 
     this.width = width;
     this.height = height;
 
-    this.draw = function(ctx, x, y){
+    this.draw = function (ctx, x, y) {
         ctx.drawImage(RESOURCES.getImage(imageName), x, y, this.width, this.height);
     }
 }
@@ -536,14 +536,14 @@ RESOURCES.addImage("attack-right", "img/rightAttack.png");
 RESOURCES.addSound("enemyHit", "sound/enemyHit.mp3");
 RESOURCES.getSound("enemyHit").volume = 1;
 RESOURCES.addSound("enemyDeath", "sound/enemyDeath.mp3");
-RESOURCES.getSound("enemyDeath").volume = 0.1;
+RESOURCES.getSound("enemyDeath").volume = 0.4;
 RESOURCES.addSound("castleHit", "sound/castleHit.mp3");
-RESOURCES.getSound("castleHit").volume = 1;
+RESOURCES.getSound("castleHit").volume = 0.9;
 RESOURCES.addSound("attack1", "sound/hoSound.mp3");
-RESOURCES.getSound("attack1").volume = 0.6;
+RESOURCES.getSound("attack1").volume = 0.5;
 RESOURCES.addSound("attack2", "sound/hiSound.mp3");
-RESOURCES.getSound("attack2").volume = 0.6;
+RESOURCES.getSound("attack2").volume = 0.5;
 RESOURCES.addSound("attack3", "sound/haSound.mp3");
-RESOURCES.getSound("attack3").volume = 0.6;
+RESOURCES.getSound("attack3").volume = 0.5;
 RESOURCES.addSound("enemy1", "sound/enemy1Sound.mp3");
 RESOURCES.getSound("enemy1").volume = 1;
