@@ -400,7 +400,6 @@ function MainGame(canvasId) {
                 if (_checkForCollision(obj_a, obj_b)) {
                     obj_a.collisionDetected(obj_b);
                     obj_b.collisionDetected(obj_a);
-
                 }
             }
         }
@@ -524,6 +523,7 @@ function ImageDrawer(imageName, width, height){
     }
 }
 
+// Images
 RESOURCES.addImage("player", "img/player.png");
 RESOURCES.addImage("stunned", "img/stunned.png");
 RESOURCES.addImage("enemy1", "img/enemy1.png");
@@ -532,17 +532,18 @@ RESOURCES.addImage("castle", "img/castle.png");
 RESOURCES.addImage("attack-left", "img/leftAttack.png");
 RESOURCES.addImage("attack-right", "img/rightAttack.png");
 
-RESOURCES.addSound("enemyDeath", "sound/enemyDeath.mp3");
-RESOURCES.getSound("enemyDeath").volume = 1;
+// Sound
 RESOURCES.addSound("enemyHit", "sound/enemyHit.mp3");
 RESOURCES.getSound("enemyHit").volume = 1;
+RESOURCES.addSound("enemyDeath", "sound/enemyDeath.mp3");
+RESOURCES.getSound("enemyDeath").volume = 0.1;
 RESOURCES.addSound("castleHit", "sound/castleHit.mp3");
 RESOURCES.getSound("castleHit").volume = 1;
 RESOURCES.addSound("attack1", "sound/hoSound.mp3");
-RESOURCES.getSound("attack1").volume = 1;
+RESOURCES.getSound("attack1").volume = 0.6;
 RESOURCES.addSound("attack2", "sound/hiSound.mp3");
-RESOURCES.getSound("attack2").volume = 1;
+RESOURCES.getSound("attack2").volume = 0.6;
 RESOURCES.addSound("attack3", "sound/haSound.mp3");
-RESOURCES.getSound("attack3").volume = 1;
+RESOURCES.getSound("attack3").volume = 0.6;
 RESOURCES.addSound("enemy1", "sound/enemy1Sound.mp3");
 RESOURCES.getSound("enemy1").volume = 1;

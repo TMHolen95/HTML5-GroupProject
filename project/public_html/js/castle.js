@@ -45,7 +45,7 @@ function Castle(game) {
             }
             if (!this.isStunned())
                 this.stun();
-            RESOURCES.getSound(castleHit).play();
+            RESOURCES.getSound("castleHit").play();
         }
     };
 
