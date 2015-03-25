@@ -80,6 +80,9 @@ and open the template in the editor.
                                 var hour = dateObj.getHours();
                                 var minute = dateObj.getMinutes();
                                 var second = dateObj.getSeconds();
+                                
+								if (hour < 10)
+                                    hour = "0" + hour;
 
                                 if (minute < 10)
                                     minute = "0" + minute;
@@ -105,7 +108,7 @@ and open the template in the editor.
 
                         <script>
                             function randomFact() {
-                                var randomfactssArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Thu", "Fri", "Sat"];
+                                var randomfactssArr = ["An ordinary earthworm has five hearts.", "If you drink a cold glass of water you are consuming negative calories. This is due to the heat energy that goes into heating up the glass of water to body temperature.", "Sharks bear live young.", "Rodents are incredibly forgetful.", "Mules, as most hybrid breeds, are generally sterile.", "A cat's jaw cannot move sideways.", "The notorious gangster Al Capone was ruthlessly strong. He could easily kill a man with his bare hands.", "The Coca Cola was originally made from coca leaves.", "The name Wendy was made up for the book “Peter Pan.”", "Barbie’s full name is Barbara Millicent Roberts."];
                                 document.getElementById("trivia").innerHTML = randomfactssArr[Math.floor((Math.random()) * 10)];
                             }
                         </script>
