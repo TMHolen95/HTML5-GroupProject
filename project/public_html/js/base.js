@@ -320,7 +320,7 @@ function MainGame(canvasId) {
         if (_enemySpawner != null)
             _enemySpawner.update(time);
 
-        ctx.textAlign="start";
+        ctx.textAlign = "start";
         ctx.fillText("Score: " + _score, 10, 20);
     };
 
