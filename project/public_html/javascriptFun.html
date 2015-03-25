@@ -116,7 +116,7 @@ and open the template in the editor.
                     <div class="divInlineBlockContainer">		
                         <p>You are visitor number 1 million! Click to collect your prize.</p>
                         <script>
-                        current=1;
+                        var current=1;
                         function getCash(){
                             var elem = document.getElementById("collectPrize")
                             if (current===1){
@@ -150,28 +150,28 @@ and open the template in the editor.
                         <p>Click to change background color!</p>
                         <button onclick="changeColor()">Click!</button>
                         <script>
-                            current = 1;
+                            var current2 = 1;
                             function changeColor() {
                                 var elem = document.getElementById("headerAndMainContainer");
-                                if(current === 1){
+                                if(current2 === 1){
                                     elem.style.background = "#0033FF";
-                                    current = 2;
+                                    current2 = 2;
                                 }
-                                else if(current === 2){
+                                else if(current2 === 2){
                                     elem.style.background = "#00FF00";
-                                    current = 3;
+                                    current2 = 3;
                                 }
-                                else if (current === 3){
+                                else if (current2 === 3){
                                     elem.style.background = "#CC0000";
-                                    current = 4;
+                                    current2 = 4;
                                 }
-                                else if (current === 4) {
+                                else if (current2 === 4) {
                                     elem.style.background = "#FFFF00";
-                                    current = 5;
+                                    current2 = 5;
                                 }
-                                else if (current === 5) {
+                                else if (current2 === 5) {
                                     elem.style.background = "#111111";
-                                    current = 1;
+                                    current2 = 1;
                                 }
                             }
                         </script>
