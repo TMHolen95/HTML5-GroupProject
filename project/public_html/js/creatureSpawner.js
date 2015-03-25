@@ -1,6 +1,3 @@
-
-RESOURCES.addSound("enemy1", "sound/enemy1Sound.mp3");
-
 function Spawner(game) {
 
     var difficulty = 20;
@@ -13,7 +10,7 @@ function Spawner(game) {
         var timeInterval = currentTime - lastTime;
 
         if (timeInterval >= timeBetweenSpawns) {
-            
+
             var newEnemy = Math.floor(Math.random() * 100);
             lastTime = currentTime;
 
@@ -45,7 +42,6 @@ function Spawner(game) {
                         RESOURCES.getSound("enemy1").play();
                     }
                 }
-
             }
         }
     };

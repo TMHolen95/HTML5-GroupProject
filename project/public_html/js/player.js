@@ -1,12 +1,3 @@
-RESOURCES.addImage("player", "img/player.png");
-RESOURCES.addImage("stunned", "img/stunned.png");
-RESOURCES.addSound("attack1", "sound/hoSound.mp3");
-RESOURCES.getSound("attack1").volume = 0.5;
-RESOURCES.addSound("attack2", "sound/hiSound.mp3");
-RESOURCES.getSound("attack2").volume = 0.5;
-RESOURCES.addSound("attack3", "sound/haSound.mp3");
-RESOURCES.getSound("attack3").volume = 0.5;
-
 Player.prototype = Object.create(GameObject.prototype);
 
 function Player(leftAttack, rightAttack) {
@@ -42,11 +33,10 @@ function Player(leftAttack, rightAttack) {
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
         if (this.isStunned()) {
-            _imgStunned.draw(ctx, pos.x+5, pos.y-40);
+            _imgStunned.draw(ctx, pos.x + 5, pos.y - 40);
         }
         _imgPlayer.draw(ctx, pos.x, pos.y);
     };
-
 
     this.update = function (timedelta) {
 
@@ -72,7 +62,6 @@ function Player(leftAttack, rightAttack) {
         leftAttack.pos.y = this.pos.y - 10;
     };
 
-
     this.collisionDetected = function (obj) {
         if (!this.isStunned() && obj.type == "enemy" &&
                 ((new Date()).getTime() - _lastStunned) > _stunnedDelay &&
@@ -86,7 +75,6 @@ function Player(leftAttack, rightAttack) {
             }, this.stunnedTimeout)
         }
     };
-
 
     var playerInput = new InputEvents();
 
@@ -124,7 +112,6 @@ function Player(leftAttack, rightAttack) {
         }
     });
 
-
     function _canDoAttack() {
         return !_this.isStunned() && ((new Date()).getTime() - _lastAttack) > _attackDelay;
     }
@@ -150,9 +137,6 @@ function Player(leftAttack, rightAttack) {
 }
 
 
-RESOURCES.addImage("attack-left", "img/leftAttack.png");
-RESOURCES.addImage("attack-right", "img/rightAttack.png");
-
 BaseAttack.prototype = Object.create(GameObject.prototype);
 
 function BaseAttack(imageName) {
@@ -162,16 +146,12 @@ function BaseAttack(imageName) {
 
     this.padding.right = this.img.width;
     this.padding.bottom = this.img.height;
-
     this.type = "attack";
-
     this.hidden = true;
-
     var _temporaryDisabled = false;
 
     // The number of frames the attack currently has been visible
     this._visibleFrameCount = 0;
-
     this.setDisabled = function (disabled) {
         _temporaryDisabled = disabled;
     };
@@ -202,6 +182,7 @@ function BaseAttack(imageName) {
         if (!_temporaryDisabled && obj.type == "enemy" && !obj.isStunned()) {
             obj.takeHit();
             obj.stun();
+            RESOURCES.getSound("enemyHit").play();
         }
     };
 }
@@ -219,9 +200,9 @@ function RightAttack(imageName) {
         var pos = this.getRealCoordinates(ctx);
         ctx.save();
         // Rotate the image around the middle left edge
-        ctx.translate(pos.x, pos.y + this.img.height/2);
+        ctx.translate(pos.x, pos.y + this.img.height / 2);
         ctx.rotate((this._visibleFrameCount * 6) * Math.PI / 180 - Math.PI / 2);
-        this.img.draw(ctx, 0, -this.img.height/2);
+        this.img.draw(ctx, 0, -this.img.height / 2);
         ctx.restore();
     };
 }
@@ -231,17 +212,14 @@ LeftAttack.prototype = Object.create(BaseAttack.prototype);
 function LeftAttack(imageName) {
 
     this.img = new ImageDrawer("attack-left", 22, 40);
-
     BaseAttack.call(this);
-
     this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
         ctx.save();
         // Rotate the image around the middle right edge
-        ctx.translate(pos.x + this.img.width, pos.y + this.img.height/2);
+        ctx.translate(pos.x + this.img.width, pos.y + this.img.height / 2);
         ctx.rotate(-(this._visibleFrameCount * 6) * Math.PI / 180 + Math.PI / 2);
-        this.img.draw(ctx, -this.img.width, -this.img.height/2);
+        this.img.draw(ctx, -this.img.width, -this.img.height / 2);
         ctx.restore();
     };
 }
-

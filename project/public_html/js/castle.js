@@ -1,5 +1,3 @@
-RESOURCES.addImage("castle", "img/castle.png");
-
 Castle.prototype = Object.create(GameObject.prototype);
 
 function Castle(game) {
@@ -16,7 +14,6 @@ function Castle(game) {
 
     this.hp = 20;
 
-
     this.pos.x = 370;
     this.pos.y = 120;
 
@@ -30,30 +27,29 @@ function Castle(game) {
     this.padding.bottom = _img.height;
     this.padding.top = -10;
 
-
-    this.draw = function(ctx) {
+    this.draw = function (ctx) {
         var pos = this.getRealCoordinates(ctx);
-        ctx.font="12px sans-serif";
-        ctx.textAlign="center";
-        ctx.fillText(this.hp, pos.x + _img.width/2, pos.y-10);
+        ctx.font = "12px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(this.hp, pos.x + _img.width / 2, pos.y - 10);
         _img.draw(ctx, pos.x, pos.y);
     };
 
-
-    this.collisionDetected = function(obj){
-        if(obj.type == "enemy" && !obj.deleted){
+    this.collisionDetected = function (obj) {
+        if (obj.type == "enemy" && !obj.deleted) {
             obj.destroy();
             this.takeHit();
-            if(this.hp == 0){
+            if (this.hp == 0) {
                 game.gameOver();
                 return;
             }
-            if(!this.isStunned())
+            if (!this.isStunned())
                 this.stun();
+            RESOURCES.getSound(castleHit).play();
         }
     };
 
-    this.onWallHit = function(){
+    this.onWallHit = function () {
         // Do nothing
     };
 }
