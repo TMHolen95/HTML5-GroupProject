@@ -516,7 +516,7 @@ var RESOURCES = new (function () {
 
 
 RESOURCES.addSound("enemyDeath", "sound/enemyDeath.mp3");
-
+RESOURCES.getSound("enemyDeath").volume = 0.1;
 
 function ImageDrawer(imageName, width, height){
 
@@ -527,7 +527,3 @@ function ImageDrawer(imageName, width, height){
         ctx.drawImage(RESOURCES.getImage(imageName), x, y, this.width, this.height);
     }
 }
-
-
-
-

@@ -1,8 +1,11 @@
 RESOURCES.addImage("player", "img/player.png");
 RESOURCES.addImage("stunned", "img/stunned.png");
 RESOURCES.addSound("attack1", "sound/hoSound.mp3");
+RESOURCES.getSound("attack1").volume = 0.5;
 RESOURCES.addSound("attack2", "sound/hiSound.mp3");
+RESOURCES.getSound("attack2").volume = 0.5;
 RESOURCES.addSound("attack3", "sound/haSound.mp3");
+RESOURCES.getSound("attack3").volume = 0.5;
 
 Player.prototype = Object.create(GameObject.prototype);
 
