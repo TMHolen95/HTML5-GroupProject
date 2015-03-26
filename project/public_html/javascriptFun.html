@@ -61,7 +61,7 @@ and open the template in the editor.
                     </div>
                     <div class="divInlineBlockContainer">
 
-                        <h3>Date & Time</h3>
+                        <h2>Date & Time</h2>
 
                         <script>
 
@@ -80,8 +80,8 @@ and open the template in the editor.
                                 var hour = dateObj.getHours();
                                 var minute = dateObj.getMinutes();
                                 var second = dateObj.getSeconds();
-                                
-								if (hour < 10)
+
+                                if (hour < 10)
                                     hour = "0" + hour;
 
                                 if (minute < 10)
@@ -100,7 +100,8 @@ and open the template in the editor.
                         <button onclick="JavaScript:showTime();">Get current Date & Time</button> 
                         <p id="dateOut"></p>
                     </div>		
-                    <div class="divInlineBlockContainer">		
+                    <div class="divInlineBlockContainer">	
+                        <h2>Random fun fact</h2>
                         <p>Click the button to display a random fun fact!</p>
                         <button onclick="randomFact()">Go ahead</button>
 
@@ -113,55 +114,57 @@ and open the template in the editor.
                             }
                         </script>
                     </div>
-                    <div class="divInlineBlockContainer">		
+                    <div class="divInlineBlockContainer">
+                        <h2>Visitor nr. 1 million</h2>
                         <p>You are visitor number 1 million! Click to collect your prize.</p>
                         <script>
-                        var current=1;
-                        function getCash(){
-                            var elem = document.getElementById("collectPrize")
-                            if (current===1){
-                                elem.style.top="100px";
-                                elem.style.left="250px";
-                                current=2;
+                            var current = 1;
+                            function getCash() {
+                                var elem = document.getElementById("collectPrize")
+                                if (current === 1) {
+                                    elem.style.top = "100px";
+                                    elem.style.left = "250px";
+                                    current = 2;
+                                }
+                                else if (current === 2) {
+                                    elem.style.top = "100px";
+                                    elem.style.left = "10px";
+                                    current = 3;
+                                }
+                                else if (current === 3) {
+                                    elem.style.top = "10px";
+                                    elem.style.left = "400px";
+                                    current = 4;
+                                }
+                                else if (current === 4) {
+                                    elem.style.top = "15px";
+                                    elem.style.left = "260px";
+                                    current = 1;
+                                }
                             }
-                            else if (current===2){
-                                elem.style.top="100px";
-                                elem.style.left="10px";
-                                current=3;
-                            }
-                            else if (current===3){
-                                elem.style.top="10px";
-                                elem.style.left="400px";
-                                current=4;
-                            }
-                            else if (current===4){
-                                elem.style.top="15px";
-                                elem.style.left="260px";
-                                current=1;
-                        }
-                    }
                         </script>
                         <div id="collectPrize">
-                        <button onmouseover="JavaScript:getCash();">Collect!</button>
+                            <button onmouseover="JavaScript:getCash();">Collect!</button>
                         </div>
                     </div>
-                    
-                   <div class="divInlineBlockContainer">		
+
+                    <div class="divInlineBlockContainer">		
+                        <h2>Background changer</h2> 
                         <p>Click to change background color!</p>
                         <button onclick="changeColor()">Click!</button>
                         <script>
                             var current2 = 1;
                             function changeColor() {
                                 var elem = document.getElementById("headerAndMainContainer");
-                                if(current2 === 1){
+                                if (current2 === 1) {
                                     elem.style.background = "#0033FF";
                                     current2 = 2;
                                 }
-                                else if(current2 === 2){
+                                else if (current2 === 2) {
                                     elem.style.background = "#00FF00";
                                     current2 = 3;
                                 }
-                                else if (current2 === 3){
+                                else if (current2 === 3) {
                                     elem.style.background = "#CC0000";
                                     current2 = 4;
                                 }
@@ -176,6 +179,7 @@ and open the template in the editor.
                             }
                         </script>
                     </div>
+                </div>
             </main>
 
 
