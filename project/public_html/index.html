@@ -97,10 +97,30 @@
 
                     }
 
+                    function startGame(){
+
+                        resetGame(game);
+
+                        gameOver.style.display = "none";
+                        splash.style.display = "none";
+                        gameCanvas.style.display = "block";
+
+                        var name = document.getElementById("playerName").value;
+                        if(name != "")
+                            playerName = name;
+
+                        game.start();
+
+                    }
+
+                    function startOnEnterKey(event) {
+                        if(event.which == 13){ // enter key
+                            document.removeEventListener("keydown", startOnEnterKey);
+                            startGame();
+                        }
+                    }
 
                     var game = new MainGame("gameWorld");
-
-                    resetGame(game);
 
                     var splash = document.getElementById("gameSplash");
                     var startButton = document.getElementById("startGame");
@@ -113,24 +133,12 @@
 
                     startButton.addEventListener("click", function (e) {
                         e.preventDefault();
-                        splash.style.display = "none";
-                        gameCanvas.style.display = "block";
-
-                        var name = document.getElementById("playerName").value;
-                        if(name != "")
-                            playerName = name;
-
-                        game.start();
-
+                        startGame();
                     })
 
                     restartGame.addEventListener("click", function (e) {
                         e.preventDefault();
-
-                        gameOver.style.display = "none";
-                        gameCanvas.style.display = "block";
-                        resetGame(game);
-                        game.start();
+                        startGame();
 
                     })
 
@@ -141,7 +149,11 @@
                         if(window.location.host != "")
                             storeHighscore(playerName, game.getScore());
 
+                        document.addEventListener("keydown", startOnEnterKey);
+
                     })
+
+                    document.addEventListener("keydown", startOnEnterKey);
 
                 </script>
                 
