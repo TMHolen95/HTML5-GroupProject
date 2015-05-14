@@ -48,7 +48,7 @@ function Player(leftAttack, rightAttack) {
             // Smoothly slow down the object when it is on the ground
             var diff = _groundDecel * timedelta;
             if (diff < Math.abs(this.vel.x))
-                this.vel.x += -Math.sign(this.vel.x) * diff;
+                this.vel.x += -MathSign(this.vel.x) * diff;
             else
                 this.vel.x = 0;
         }

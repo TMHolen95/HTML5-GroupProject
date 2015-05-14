@@ -23,6 +23,13 @@ function Padding(top, right, bottom, left) {
     this.left = left;
 }
 
+function MathSign(number){
+
+    if(number === 0)
+        return 0;
+    return number < 0 ? -1 : 1;
+
+}
 
 function GameObject() {
 
