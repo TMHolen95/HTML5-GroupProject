@@ -33,18 +33,18 @@
 
         <div id="headerAndMainContainer">
             <header>
-                <div class="container">><img src="graphicElements/Logo.png" alt="Team4 Logo" id="logo"></div>
+                <div class="container"><img src="graphicElements/Logo.png" alt="Team4 Logo" id="logo"></div>
             </header>
             <main>    
                 <div class="center">
                     <h1 class="noMarginLeft">Welcome to our game!</h1>
                     <p>If you need help check out the "How to Play" page.<br>Remember to check out the other pages too, they are interesting!</p>
-                </div>
+                
 
                 <div id="gameSplash" style="width: 900px;height:500px;">
                     <p><a href="#" id="startGame">Click to start</a>
-                    <br>
-                    <input type="text" id="playerName" value="" placeholder="Enter your name" maxlength="30">
+                        <br>
+                        <input type="text" id="playerName" value="" placeholder="Enter your name" maxlength="30">
                     </p>
                 </div>
                 <div id="gameOver" style="width: 900px;height:500px;">
@@ -75,20 +75,20 @@
 
                     }
 
-                    function storeHighscore(player, score){
+                    function storeHighscore(player, score) {
 
                         var http = new XMLHttpRequest();
                         var url = "updatedb.php";
-                        var params = "player="+player+"&score="+score;
+                        var params = "player=" + player + "&score=" + score;
 
                         http.open("POST", url, true);
                         //Send the proper header information along with the request
                         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-                        http.onreadystatechange = function() {
+                        http.onreadystatechange = function () {
 
-                            if(http.readyState == 4){
-                                if(http.status != 200){
+                            if (http.readyState == 4) {
+                                if (http.status != 200) {
                                     alert("Failed to store score.");
                                 }
                             }
@@ -97,7 +97,7 @@
 
                     }
 
-                    function startGame(){
+                    function startGame() {
 
                         resetGame(game);
 
@@ -106,7 +106,7 @@
                         gameCanvas.style.display = "block";
 
                         var name = document.getElementById("playerName").value;
-                        if(name != "")
+                        if (name != "")
                             playerName = name;
 
                         game.start();
@@ -114,7 +114,7 @@
                     }
 
                     function startOnEnterKey(event) {
-                        if(event.which == 13){ // enter key
+                        if (event.which == 13) { // enter key
                             document.removeEventListener("keydown", startOnEnterKey);
                             startGame();
                         }
@@ -129,7 +129,7 @@
                     var gameScore = document.getElementById("gameScore");
                     var restartGame = document.getElementById("restartGame");
 
-                    var playerName = "anonymous-" + Math.floor(Math.random()*1000 + 1);
+                    var playerName = "anonymous-" + Math.floor(Math.random() * 1000 + 1);
 
                     startButton.addEventListener("click", function (e) {
                         e.preventDefault();
@@ -146,7 +146,7 @@
                         gameScore.innerText = game.getScore();
                         gameCanvas.style.display = "none";
                         gameOver.style.display = "block";
-                        if(window.location.host != "")
+                        if (window.location.host != "")
                             storeHighscore(playerName, game.getScore());
 
                         document.addEventListener("keydown", startOnEnterKey);
@@ -156,9 +156,17 @@
                     document.addEventListener("keydown", startOnEnterKey);
 
                 </script>
-                
+
                 <a href="scores.php"><h4 class="center">Click to see the high scores</h4></a>
-				<a href="sources.html"><h5 class="center">Disclaimer</h5></a>
+                <a href="sources.html"><h5 class="center">Disclaimer</h5></a>
+                <div class="divInlineBlockContainer autoHeight">
+                <p>
+                    Note:<br>
+                    The game have compability issues with internet explorer. <br>
+                    If you du have these issues then you should consider to use <a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">Chrome</a> or <a href="https://www.mozilla.org/nb-NO/firefox/new/" target="_blank">Firefox</a>
+                </p>
+                </div>
+                </div>
             </main>
         </div>
 
